@@ -25,6 +25,7 @@ OUTPUT_DIR = os.path.join(BASE_DIR, "output")
 SAMPLES_DIR = os.path.join(BASE_DIR, "samples")
 PIPER_EXE = os.path.join(BASE_DIR, "piper_win", "piper.exe")
 ICON_PATH = os.path.join(BASE_DIR, "assets", "icon.ico")
+MODELS_JSON_PATH = os.path.join(BASE_DIR, "models.json")
 
 # Ensure directories exist
 for directory in [MODELS_DIR, CONFIG_DIR, OUTPUT_DIR, SAMPLES_DIR]:
@@ -34,334 +35,19 @@ for directory in [MODELS_DIR, CONFIG_DIR, OUTPUT_DIR, SAMPLES_DIR]:
 QUALITIES = ["x_low", "low", "medium", "high"]
 
 # Model repository information with all English voices and qualities
-MODEL_REPOSITORY = {
-    "en_US": {
-        "amy": {
-            "name": "Amy (US English, Female)",
-            "qualities": {
-                "medium": {
-                    "url": "https://huggingface.co/rhasspy/piper-voices/resolve/main/en/en_US/amy/medium/en_US-amy-medium.onnx?download=true",
-                    "config_url": "https://huggingface.co/rhasspy/piper-voices/raw/main/en/en_US/amy/medium/en_US-amy-medium.onnx.json"
-                },
-                "low": {
-                    "url": "https://huggingface.co/rhasspy/piper-voices/resolve/main/en/en_US/amy/low/en_US-amy-low.onnx?download=true",
-                    "config_url": "https://huggingface.co/rhasspy/piper-voices/raw/main/en/en_US/amy/low/en_US-amy-low.onnx.json"
-                }
-            },
-            "sample_url": "https://rhasspy.github.io/piper-samples/en/en_US/amy/medium.mp3"
-        },
-        "arctic": {
-            "name": "Arctic (US English, Mixed)",
-            "qualities": {
-                "medium": {
-                    "url": "https://huggingface.co/rhasspy/piper-voices/resolve/main/en/en_US/arctic/medium/en_US-arctic-medium.onnx?download=true",
-                    "config_url": "https://huggingface.co/rhasspy/piper-voices/raw/main/en/en_US/arctic/medium/en_US-arctic-medium.onnx.json"
-                }
-            },
-            "sample_url": "https://rhasspy.github.io/piper-samples/en/en_US/arctic/medium.mp3"
-        },
-        "bryce": {
-            "name": "Bryce (US English, Male)",
-            "qualities": {
-                "medium": {
-                    "url": "https://huggingface.co/rhasspy/piper-voices/resolve/main/en/en_US/bryce/medium/en_US-bryce-medium.onnx?download=true",
-                    "config_url": "https://huggingface.co/rhasspy/piper-voices/raw/main/en/en_US/bryce/medium/en_US-bryce-medium.onnx.json"
-                }
-            },
-            "sample_url": "https://rhasspy.github.io/piper-samples/en/en_US/bryce/medium.mp3"
-        },
-        "danny": {
-            "name": "Danny (US English, Male)",
-            "qualities": {
-                "low": {
-                    "url": "https://huggingface.co/rhasspy/piper-voices/resolve/main/en/en_US/danny/low/en_US-danny-low.onnx?download=true",
-                    "config_url": "https://huggingface.co/rhasspy/piper-voices/raw/main/en/en_US/danny/low/en_US-danny-low.onnx.json"
-                }
-            },
-            "sample_url": "https://rhasspy.github.io/piper-samples/en/en_US/danny/low.mp3"
-        },
-        "hfc_female": {
-            "name": "HFC Female (US English, Female)",
-            "qualities": {
-                "medium": {
-                    "url": "https://huggingface.co/rhasspy/piper-voices/resolve/main/en/en_US/hfc_female/medium/en_US-hfc_female-medium.onnx?download=true",
-                    "config_url": "https://huggingface.co/rhasspy/piper-voices/raw/main/en/en_US/hfc_female/medium/en_US-hfc_female-medium.onnx.json"
-                }
-            },
-            "sample_url": "https://rhasspy.github.io/piper-samples/en/en_US/hfc_female/medium.mp3"
-        },
-        "hfc_male": {
-            "name": "HFC Male (US English, Male)",
-            "qualities": {
-                "medium": {
-                    "url": "https://huggingface.co/rhasspy/piper-voices/resolve/main/en/en_US/hfc_male/medium/en_US-hfc_male-medium.onnx?download=true",
-                    "config_url": "https://huggingface.co/rhasspy/piper-voices/raw/main/en/en_US/hfc_male/medium/en_US-hfc_male-medium.onnx.json"
-                }
-            },
-            "sample_url": "https://rhasspy.github.io/piper-samples/en/en_US/hfc_male/medium.mp3"
-        },
-        "joe": {
-            "name": "Joe (US English, Male)",
-            "qualities": {
-                "medium": {
-                    "url": "https://huggingface.co/rhasspy/piper-voices/resolve/main/en/en_US/joe/medium/en_US-joe-medium.onnx?download=true",
-                    "config_url": "https://huggingface.co/rhasspy/piper-voices/raw/main/en/en_US/joe/medium/en_US-joe-medium.onnx.json"
-                }
-            },
-            "sample_url": "https://rhasspy.github.io/piper-samples/en/en_US/joe/medium.mp3"
-        },
-        "john": {
-            "name": "John (US English, Male)",
-            "qualities": {
-                "medium": {
-                    "url": "https://huggingface.co/rhasspy/piper-voices/resolve/main/en/en_US/john/medium/en_US-john-medium.onnx?download=true",
-                    "config_url": "https://huggingface.co/rhasspy/piper-voices/raw/main/en/en_US/john/medium/en_US-john-medium.onnx.json"
-                }
-            },
-            "sample_url": "https://rhasspy.github.io/piper-samples/en/en_US/john/medium.mp3"
-        },
-        "kathleen": {
-            "name": "Kathleen (US English, Female)",
-            "qualities": {
-                "low": {
-                    "url": "https://huggingface.co/rhasspy/piper-voices/resolve/main/en/en_US/kathleen/low/en_US-kathleen-low.onnx?download=true",
-                    "config_url": "https://huggingface.co/rhasspy/piper-voices/raw/main/en/en_US/kathleen/low/en_US-kathleen-low.onnx.json"
-                }
-            },
-            "sample_url": "https://rhasspy.github.io/piper-samples/en/en_US/kathleen/low.mp3"
-        },
-        "kristin": {
-            "name": "Kristin (US English, Female)",
-            "qualities": {
-                "medium": {
-                    "url": "https://huggingface.co/rhasspy/piper-voices/resolve/main/en/en_US/kristin/medium/en_US-kristin-medium.onnx?download=true",
-                    "config_url": "https://huggingface.co/rhasspy/piper-voices/raw/main/en/en_US/kristin/medium/en_US-kristin-medium.onnx.json"
-                }
-            },
-            "sample_url": "https://rhasspy.github.io/piper-samples/en/en_US/kristin/medium.mp3"
-        },
-        "kusal": {
-            "name": "Kusal (US English, Male)",
-            "qualities": {
-                "medium": {
-                    "url": "https://huggingface.co/rhasspy/piper-voices/resolve/main/en/en_US/kusal/medium/en_US-kusal-medium.onnx?download=true",
-                    "config_url": "https://huggingface.co/rhasspy/piper-voices/raw/main/en/en_US/kusal/medium/en_US-kusal-medium.onnx.json"
-                }
-            },
-            "sample_url": "https://rhasspy.github.io/piper-samples/en/en_US/kusal/medium.mp3"
-        },
-        "l2arctic": {
-            "name": "L2 Arctic (US English, Mixed)",
-            "qualities": {
-                "medium": {
-                    "url": "https://huggingface.co/rhasspy/piper-voices/resolve/main/en/en_US/l2arctic/medium/en_US-l2arctic-medium.onnx?download=true",
-                    "config_url": "https://huggingface.co/rhasspy/piper-voices/raw/main/en/en_US/l2arctic/medium/en_US-l2arctic-medium.onnx.json"
-                }
-            },
-            "sample_url": "https://rhasspy.github.io/piper-samples/en/en_US/l2arctic/medium.mp3"
-        },
-        "lessac": {
-            "name": "Lessac (US English, Female)",
-            "qualities": {
-                "low": {
-                    "url": "https://huggingface.co/rhasspy/piper-voices/resolve/main/en/en_US/lessac/low/en_US-lessac-low.onnx?download=true",
-                    "config_url": "https://huggingface.co/rhasspy/piper-voices/raw/main/en/en_US/lessac/low/en_US-lessac-low.onnx.json"
-                },
-                "medium": {
-                    "url": "https://huggingface.co/rhasspy/piper-voices/resolve/main/en/en_US/lessac/medium/en_US-lessac-medium.onnx?download=true",
-                    "config_url": "https://huggingface.co/rhasspy/piper-voices/raw/main/en/en_US/lessac/medium/en_US-lessac-medium.onnx.json"
-                },
-                "high": {
-                    "url": "https://huggingface.co/rhasspy/piper-voices/resolve/main/en/en_US/lessac/high/en_US-lessac-high.onnx?download=true",
-                    "config_url": "https://huggingface.co/rhasspy/piper-voices/raw/main/en/en_US/lessac/high/en_US-lessac-high.onnx.json"
-                }
-            },
-            "sample_url": "https://rhasspy.github.io/piper-samples/en/en_US/lessac/medium.mp3"
-        },
-        "libritts": {
-            "name": "LibriTTS (US English, Mixed)",
-            "qualities": {
-                "high": {
-                    "url": "https://huggingface.co/rhasspy/piper-voices/resolve/main/en/en_US/libritts/high/en_US-libritts-high.onnx?download=true",
-                    "config_url": "https://huggingface.co/rhasspy/piper-voices/raw/main/en/en_US/libritts/high/en_US-libritts-high.onnx.json"
-                }
-            },
-            "sample_url": "https://rhasspy.github.io/piper-samples/en/en_US/libritts/high.mp3"
-        },
-        "libritts_r": {
-            "name": "LibriTTS R (US English, Mixed)",
-            "qualities": {
-                "medium": {
-                    "url": "https://huggingface.co/rhasspy/piper-voices/resolve/main/en/en_US/libritts_r/medium/en_US-libritts_r-medium.onnx?download=true",
-                    "config_url": "https://huggingface.co/rhasspy/piper-voices/raw/main/en/en_US/libritts_r/medium/en_US-libritts_r-medium.onnx.json"
-                }
-            },
-            "sample_url": "https://rhasspy.github.io/piper-samples/en/en_US/libritts_r/medium.mp3"
-        },
-        "ljspeech": {
-            "name": "LJ Speech (US English, Female)",
-            "qualities": {
-                "medium": {
-                    "url": "https://huggingface.co/rhasspy/piper-voices/resolve/main/en/en_US/ljspeech/medium/en_US-ljspeech-medium.onnx?download=true",
-                    "config_url": "https://huggingface.co/rhasspy/piper-voices/raw/main/en/en_US/ljspeech/medium/en_US-ljspeech-medium.onnx.json"
-                },
-                "high": {
-                    "url": "https://huggingface.co/rhasspy/piper-voices/resolve/main/en/en_US/ljspeech/high/en_US-ljspeech-high.onnx?download=true",
-                    "config_url": "https://huggingface.co/rhasspy/piper-voices/raw/main/en/en_US/ljspeech/high/en_US-ljspeech-high.onnx.json"
-                }
-            },
-            "sample_url": "https://rhasspy.github.io/piper-samples/en/en_US/ljspeech/medium.mp3"
-        },
-        "norman": {
-            "name": "Norman (US English, Male)",
-            "qualities": {
-                "medium": {
-                    "url": "https://huggingface.co/rhasspy/piper-voices/resolve/main/en/en_US/norman/medium/en_US-norman-medium.onnx?download=true",
-                    "config_url": "https://huggingface.co/rhasspy/piper-voices/raw/main/en/en_US/norman/medium/en_US-norman-medium.onnx.json"
-                }
-            },
-            "sample_url": "https://rhasspy.github.io/piper-samples/en/en_US/norman/medium.mp3"
-        },
-        "reza_ibrahim": {
-            "name": "Reza Ibrahim (US English, Male)",
-            "qualities": {
-                "medium": {
-                    "url": "https://huggingface.co/rhasspy/piper-voices/resolve/main/en/en_US/reza_ibrahim/medium/en_US-reza_ibrahim-medium.onnx?download=true",
-                    "config_url": "https://huggingface.co/rhasspy/piper-voices/raw/main/en/en_US/reza_ibrahim/medium/en_US-reza_ibrahim-medium.onnx.json"
-                }
-            },
-            "sample_url": "https://rhasspy.github.io/piper-samples/en/en_US/reza_ibrahim/medium.mp3"
-        },
-        "ryan": {
-            "name": "Ryan (US English, Male)",
-            "qualities": {
-                "low": {
-                    "url": "https://huggingface.co/rhasspy/piper-voices/resolve/main/en/en_US/ryan/low/en_US-ryan-low.onnx?download=true",
-                    "config_url": "https://huggingface.co/rhasspy/piper-voices/raw/main/en/en_US/ryan/low/en_US-ryan-low.onnx.json"
-                },
-                "medium": {
-                    "url": "https://huggingface.co/rhasspy/piper-voices/resolve/main/en/en_US/ryan/medium/en_US-ryan-medium.onnx?download=true",
-                    "config_url": "https://huggingface.co/rhasspy/piper-voices/raw/main/en/en_US/ryan/medium/en_US-ryan-medium.onnx.json"
-                },
-                "high": {
-                    "url": "https://huggingface.co/rhasspy/piper-voices/resolve/main/en/en_US/ryan/high/en_US-ryan-high.onnx?download=true",
-                    "config_url": "https://huggingface.co/rhasspy/piper-voices/raw/main/en/en_US/ryan/high/en_US-ryan-high.onnx.json"
-                }
-            },
-            "sample_url": "https://rhasspy.github.io/piper-samples/en/en_US/ryan/medium.mp3"
-        },
-        "sam": {
-            "name": "Sam (US English, Male)",
-            "qualities": {
-                "medium": {
-                    "url": "https://huggingface.co/rhasspy/piper-voices/resolve/main/en/en_US/sam/medium/en_US-sam-medium.onnx?download=true",
-                    "config_url": "https://huggingface.co/rhasspy/piper-voices/raw/main/en/en_US/sam/medium/en_US-sam-medium.onnx.json"
-                }
-            },
-            "sample_url": "https://rhasspy.github.io/piper-samples/en/en_US/sam/medium.mp3"
-        }
-    },
-    "en_GB": {
-        "alan": {
-            "name": "Alan (UK English, Male)",
-            "qualities": {
-                "low": {
-                    "url": "https://huggingface.co/rhasspy/piper-voices/resolve/main/en/en_GB/alan/low/en_GB-alan-low.onnx?download=true",
-                    "config_url": "https://huggingface.co/rhasspy/piper-voices/raw/main/en/en_GB/alan/low/en_GB-alan-low.onnx.json"
-                },
-                "medium": {
-                    "url": "https://huggingface.co/rhasspy/piper-voices/resolve/main/en/en_GB/alan/medium/en_GB-alan-medium.onnx?download=true",
-                    "config_url": "https://huggingface.co/rhasspy/piper-voices/raw/main/en/en_GB/alan/medium/en_GB-alan-medium.onnx.json"
-                }
-            },
-            "sample_url": "https://rhasspy.github.io/piper-samples/en/en_GB/alan/medium.mp3"
-        },
-        "alba": {
-            "name": "Alba (UK English, Female)",
-            "qualities": {
-                "medium": {
-                    "url": "https://huggingface.co/rhasspy/piper-voices/resolve/main/en/en_GB/alba/medium/en_GB-alba-medium.onnx?download=true",
-                    "config_url": "https://huggingface.co/rhasspy/piper-voices/raw/main/en/en_GB/alba/medium/en_GB-alba-medium.onnx.json"
-                }
-            },
-            "sample_url": "https://rhasspy.github.io/piper-samples/en/en_GB/alba/medium.mp3"
-        },
-        "aru": {
-            "name": "Aru (UK English, Female)",
-            "qualities": {
-                "medium": {
-                    "url": "https://huggingface.co/rhasspy/piper-voices/resolve/main/en/en_GB/aru/medium/en_GB-aru-medium.onnx?download=true",
-                    "config_url": "https://huggingface.co/rhasspy/piper-voices/raw/main/en/en_GB/aru/medium/en_GB-aru-medium.onnx.json"
-                }
-            },
-            "sample_url": "https://rhasspy.github.io/piper-samples/en/en_GB/aru/medium.mp3"
-        },
-        "cori": {
-            "name": "Cori (UK English, Female)",
-            "qualities": {
-                "medium": {
-                    "url": "https://huggingface.co/rhasspy/piper-voices/resolve/main/en/en_GB/cori/medium/en_GB-cori-medium.onnx?download=true",
-                    "config_url": "https://huggingface.co/rhasspy/piper-voices/raw/main/en/en_GB/cori/medium/en_GB-cori-medium.onnx.json"
-                },
-                "high": {
-                    "url": "https://huggingface.co/rhasspy/piper-voices/resolve/main/en/en_GB/cori/high/en_GB-cori-high.onnx?download=true",
-                    "config_url": "https://huggingface.co/rhasspy/piper-voices/raw/main/en/en_GB/cori/high/en_GB-cori-high.onnx.json"
-                }
-            },
-            "sample_url": "https://rhasspy.github.io/piper-samples/en/en_GB/cori/medium.mp3"
-        },
-        "jenny_dioco": {
-            "name": "Jenny (UK English, Female)",
-            "qualities": {
-                "medium": {
-                    "url": "https://huggingface.co/rhasspy/piper-voices/resolve/main/en/en_GB/jenny_dioco/medium/en_GB-jenny_dioco-medium.onnx?download=true",
-                    "config_url": "https://huggingface.co/rhasspy/piper-voices/raw/main/en/en_GB/jenny_dioco/medium/en_GB-jenny_dioco-medium.onnx.json"
-                }
-            },
-            "sample_url": "https://rhasspy.github.io/piper-samples/en/en_GB/jenny_dioco/medium.mp3"
-        },
-        "northern_english_male": {
-            "name": "Northern English Male (UK English, Male)",
-            "qualities": {
-                "medium": {
-                    "url": "https://huggingface.co/rhasspy/piper-voices/resolve/main/en/en_GB/northern_english_male/medium/en_GB-northern_english_male-medium.onnx?download=true",
-                    "config_url": "https://huggingface.co/rhasspy/piper-voices/raw/main/en/en_GB/northern_english_male/medium/en_GB-northern_english_male-medium.onnx.json"
-                }
-            },
-            "sample_url": "https://rhasspy.github.io/piper-samples/en/en_GB/northern_english_male/medium.mp3"
-        },
-        "semaine": {
-            "name": "Semaine (UK English, Mixed)",
-            "qualities": {
-                "medium": {
-                    "url": "https://huggingface.co/rhasspy/piper-voices/resolve/main/en/en_GB/semaine/medium/en_GB-semaine-medium.onnx?download=true",
-                    "config_url": "https://huggingface.co/rhasspy/piper-voices/raw/main/en/en_GB/semaine/medium/en_GB-semaine-medium.onnx.json"
-                }
-            },
-            "sample_url": "https://rhasspy.github.io/piper-samples/en/en_GB/semaine/medium.mp3"
-        },
-        "southern_english_female": {
-            "name": "Southern English Female (UK English, Female)",
-            "qualities": {
-                "low": {
-                    "url": "https://huggingface.co/rhasspy/piper-voices/resolve/main/en/en_GB/southern_english_female/low/en_GB-southern_english_female-low.onnx?download=true",
-                    "config_url": "https://huggingface.co/rhasspy/piper-voices/raw/main/en/en_GB/southern_english_female/low/en_GB-southern_english_female-low.onnx.json"
-                }
-            },
-            "sample_url": "https://rhasspy.github.io/piper-samples/en/en_GB/southern_english_female/low.mp3"
-        },
-        "vctk": {
-            "name": "VCTK (UK English, Mixed)",
-            "qualities": {
-                "medium": {
-                    "url": "https://huggingface.co/rhasspy/piper-voices/resolve/main/en/en_GB/vctk/medium/en_GB-vctk-medium.onnx?download=true",
-                    "config_url": "https://huggingface.co/rhasspy/piper-voices/raw/main/en/en_GB/vctk/medium/en_GB-vctk-medium.onnx.json"
-                }
-            },
-            "sample_url": "https://rhasspy.github.io/piper-samples/en/en_GB/vctk/medium.mp3"
-        }
-    }
-}
+MODEL_REPOSITORY = {}
+if os.path.exists(MODELS_JSON_PATH):
+    try:
+        with open(MODELS_JSON_PATH, "r", encoding="utf-8") as f:
+            MODEL_REPOSITORY = json.load(f)
+        print("Model repository loaded from models.json.")
+    except json.JSONDecodeError as e:
+        print(f"Error decoding models.json: {e}")
+    except Exception as e:
+        print(f"An error occurred while loading models.json: {e}")
+else:
+    print("models.json not found, using an empty model repository.")
+
 
 class DownloadWorker(QObject):
     progress = pyqtSignal(int)
@@ -692,8 +378,51 @@ class SUZAVoiceStudio(QMainWindow):
         language_label = QLabel("Language:")
         language_label.setStyleSheet("color: #FFFFFF;")
         self.language_combo = QComboBox()
-        self.language_combo.addItem("US English", "en_US")
-        self.language_combo.addItem("UK English", "en_GB")
+        self.language_combo.addItem("English Great Britain", "en_GB")
+        self.language_combo.addItem("English United States", "en_US")
+        self.language_combo.addItem("Bahasa Indonesia Indonesia", "id_ID")
+        self.language_combo.addItem("Català Spain", "ca_ES")
+        self.language_combo.addItem("Cymraeg Great Britain", "cy_GB")
+        self.language_combo.addItem("Dansk Denmark", "da_DK")
+        self.language_combo.addItem("Deutsch Germany", "de_DE")
+        self.language_combo.addItem("Español Argentina", "es_AR")
+        self.language_combo.addItem("Español Mexico", "es_MX")
+        self.language_combo.addItem("Español Spain", "es_ES")
+        self.language_combo.addItem("Français France", "fr_FR")
+        self.language_combo.addItem("Italiano Italy", "it_IT")
+        self.language_combo.addItem("Kiswahili Democratic Republic of the Congo", "sw_CD")
+        self.language_combo.addItem("Latviešu Latvia", "lv_LV")
+        self.language_combo.addItem("Lëtzebuergesch Luxembourg", "lb_LU")
+        self.language_combo.addItem("Magyar Hungary", "hu_HU")
+        self.language_combo.addItem("Nederlands Belgium", "nl_BE")
+        self.language_combo.addItem("Nederlands Netherlands", "nl_NL")
+        self.language_combo.addItem("Norsk Norway", "no_NO")
+        self.language_combo.addItem("Polski Poland", "pl_PL")
+        self.language_combo.addItem("Português Brazil", "pt_BR")
+        self.language_combo.addItem("Português Portugal", "pt_PT")
+        self.language_combo.addItem("Română Romania", "ro_RO")
+        self.language_combo.addItem("Slovenčina Slovakia", "sk_SK")
+        self.language_combo.addItem("Slovenščina Slovenia", "sl_SI")
+        self.language_combo.addItem("srpski Serbia", "sr_RS")
+        self.language_combo.addItem("Suomi Finland", "fi_FI")
+        self.language_combo.addItem("Svenska Sweden", "sv_SE")
+        self.language_combo.addItem("Tiếng Việt Vietnam", "vi_VN")
+        self.language_combo.addItem("Türkçe Turkey", "tr_TR")
+        self.language_combo.addItem("íslenska Iceland", "is_IS")
+        self.language_combo.addItem("Čeština Czech Republic", "cs_CZ")
+        self.language_combo.addItem("Ελληνικά Greece", "el_GR")
+        self.language_combo.addItem("Русский Russia", "ru_RU")
+        self.language_combo.addItem("украї́нська мо́ва Ukraine", "uk_UA")
+        self.language_combo.addItem("қазақша Kazakhstan", "kk_KZ")
+        self.language_combo.addItem("עברית Israel", "he_IL")
+        self.language_combo.addItem("العربية Jordan", "ar_JO")
+        self.language_combo.addItem("فارسی Iran", "fa_IR")
+        self.language_combo.addItem("नेपाली Nepal", "ne_NP")
+        self.language_combo.addItem("हिन्दी India", "hi_IN")
+        self.language_combo.addItem("తెలుగు India", "te_IN")
+        self.language_combo.addItem("മലയാളം India", "ml_IN")
+        self.language_combo.addItem("ქართული ენა Georgia", "ka_GE")
+        self.language_combo.addItem("简体中文 China", "zh_CN")
         self.language_combo.currentIndexChanged.connect(self.update_voice_selection)
         self.language_combo.setStyleSheet("""
             QComboBox {
