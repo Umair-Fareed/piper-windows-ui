@@ -1,10 +1,37 @@
 # SUZA Voice Studio
 
 <div align="center">
+
+## SUZA Voice Studio 2 Is Now Available
+
+**Looking for the latest version?**  
+Visit the official website for **SUZA Voice Studio 2**.
+
+<br />
+
+<a href="https://suzavoicestudio.com">
+  <img src="https://img.shields.io/badge/SUZA%20Voice%20Studio%202-Visit%20Official%20Website-00C896?style=for-the-badge&logo=googlechrome&logoColor=white&labelColor=1F2937" alt="Visit SUZA Voice Studio 2" />
+</a>
+
+<br />
+<br />
+
+### This repository contains SUZA Voice Studio 1
+
+** Information for SUZA Voice Studio 1 is below **
+
+</div>
+
+---
+
+## SUZA Voice Studio 1
+
+<div align="center">
   <a href="https://suzagear.com/voicestudio">
     <img src="https://img.shields.io/badge/Download-One%20Click%20Installer-brightgreen?style=for-the-badge" alt="Download One-Click Installer" />
   </a>
 </div>
+
 
 SUZA Voice Studio is a powerful, elegant offline text-to-speech application based on the Piper TTS engine. Generate natural-sounding speech with 29+ English AI voices without requiring an internet connection. (The models will need a network connection to download automatically when you run first time, and then it works fully locally.)
 
@@ -79,3 +106,4 @@ This project is open source and available under the [MIT License](LICENSE).
 ## Credits
 
 This application uses the [Piper TTS engine](https://github.com/rhasspy/piper) for speech synthesis. And is created by SUZA.
+
